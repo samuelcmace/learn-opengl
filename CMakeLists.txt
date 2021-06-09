@@ -9,6 +9,7 @@ add_subdirectory(include/glew-2.1.0/build/cmake)
 add_subdirectory(include/glfw-3.3.4)
 
 include_directories(include/glew-2.1.0/include)
+include_directories(include/glfw-3.3.4/include)
 
 set(SOURCES main.cpp)
 
