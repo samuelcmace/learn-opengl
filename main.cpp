@@ -178,38 +178,24 @@ int main()
       glfwPollEvents();
 
       if(direction)
-      {
         triOffset += triIncrement;
-      }
       else
-      {
         triOffset -= triIncrement;
-      }
 
       if(abs(triOffset) >= triMaxOffset)
-      {
         direction = !direction;
-      }
 
       curAngle += 0.1f;
       if(curAngle >= 360.0f)
-      {
         curAngle -= 360.0f;
-      }
 
       if(direction)
-      {
         curSize += 0.001f;
-      }
       else
-      {
         curSize -= 0.001f;
-      }
 
       if(curSize >= maxSize || curSize <= minSize)
-      {
         sizeDirection = !sizeDirection;
-      }
 
       glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
       glClear(GL_COLOR_BUFFER_BIT);
@@ -218,7 +204,7 @@ int main()
 
       glm::mat4 model = glm::mat4(1.0f);
       model = glm::translate(model, glm::vec3(triOffset, 0.0f, 0.0f));
-      // model = glm::rotate(model, glm::radians(curAngle), glm::vec3(0.0f, 0.0f, 1.0f));
+      model = glm::rotate(model, glm::radians(curAngle), glm::vec3(0.0f, 0.0f, 1.0f));
       model = glm::scale(model, glm::vec3(curSize, 0.4f, 1.0f));
 
       glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
