@@ -25,23 +25,26 @@ float curSize = 0.4f;
 float maxSize = 0.8f;
 float minSize = 0.1f;
 
-static const char* vShader = "            \n\
-#version 330                              \n\
-layout (location = 0) in vec3 pos;        \n\
-uniform mat4 model;                       \n\
-void main()                               \n\
-{                                         \n\
-  gl_Position = model * vec4(pos, 1.0);   \n\
-}                                         \n\
+static const char* vShader = "                        \n\
+#version 330                                          \n\
+layout (location = 0) in vec3 pos;                    \n\
+out vec4 vCol;                                        \n\
+uniform mat4 model;                                   \n\
+void main()                                           \n\
+{                                                     \n\
+  gl_Position = model * vec4(pos, 1.0);               \n\
+  vCol = vec4(clamp(pos, 0.0f, 1.0f), 1.0f);          \n\
+}                                                     \n\
 ";
 
-static const char* fShader = "            \n\
-#version 330                              \n\
-out vec4 color;                           \n\
-void main()                               \n\
-{                                         \n\
-  color = vec4(1.0, 0.0, 0.0, 1.0);       \n\
-}                                         \n\
+static const char* fShader = "                        \n\
+#version 330                                          \n\
+in vec4 vCol;                                         \n\
+out vec4 color;                                       \n\
+void main()                                           \n\
+{                                                     \n\
+  color = vCol                    ;                   \n\
+}                                                     \n\
 ";
 
 void CreateTriangle()
@@ -203,10 +206,10 @@ int main()
       glUseProgram(shader);
 
       glm::mat4 model = glm::mat4(1.0f);
-      model = glm::translate(model, glm::vec3(triOffset, 0.0f, 0.0f));
-      model = glm::rotate(model, glm::radians(curAngle), glm::vec3(0.0f, 0.0f, 1.0f));
-      model = glm::scale(model, glm::vec3(curSize, 0.4f, 1.0f));
-
+      // model = glm::translate(model, glm::vec3(triOffset, 0.0f, 0.0f));
+      // model = glm::rotate(model, glm::radians(curAngle), glm::vec3(0.0f, 0.0f, 1.0f));
+      model = glm::scale(model, glm::vec3(0.4f, 0.4f, 1.0f));
+      
       glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 
       glBindVertexArray(VAO);
