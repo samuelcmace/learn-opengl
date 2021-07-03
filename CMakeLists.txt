@@ -13,7 +13,12 @@ include_directories(include/glew-2.1.0/include)
 include_directories(include/glfw-3.3.4/include)
 include_directories(include/glm-0.9.9.8/glm)
 
-set(SOURCES main.cpp)
+set(SOURCES
+    main.cpp
+    window.cpp      window.h
+    mesh.cpp        mesh.h
+    shader.cpp      shader.h
+)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 
