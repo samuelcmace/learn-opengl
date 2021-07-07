@@ -18,6 +18,7 @@ set(SOURCES
     window.cpp      window.h
     mesh.cpp        mesh.h
     shader.cpp      shader.h
+    camera.cpp      camera.h
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})
