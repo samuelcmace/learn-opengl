@@ -23,8 +23,8 @@ Camera camera;
 GLfloat deltaTime = 0.0f;
 GLfloat lastTime = 0.0f;
 
-static const char* vShader = "../shaders/shader.vert";
-static const char* fShader = "../shaders/shader.frag";
+static const char* vShader = "./shaders/shader.vert";
+static const char* fShader = "./shaders/shader.frag";
 
 void CreateObjects()
 {

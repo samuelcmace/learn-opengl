@@ -13,6 +13,9 @@ include_directories(include/glew-2.1.0/include)
 include_directories(include/glfw-3.3.4/include)
 include_directories(include/glm-0.9.9.8/glm)
 
+configure_file(shaders/shader.vert shaders/shader.vert COPYONLY)
+configure_file(shaders/shader.frag shaders/shader.frag COPYONLY)
+
 set(SOURCES
     main.cpp
     window.cpp      window.h
