@@ -1,17 +1,13 @@
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.5)
 project(learn-opengl)
 
-set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_subdirectory(include/glew-2.1.0/build/cmake)
-add_subdirectory(include/glfw-3.3.4)
-add_subdirectory(include/glm-0.9.9.8)
-
-include_directories(include/glew-2.1.0/include)
-include_directories(include/glfw-3.3.4/include)
-include_directories(include/glm-0.9.9.8/glm)
+# Specify the required packages
+find_package(glfw3 REQUIRED)
+find_package(GLEW REQUIRED)
+find_package(glm REQUIRED)
 
 configure_file(shaders/shader.vert shaders/shader.vert COPYONLY)
 configure_file(shaders/shader.frag shaders/shader.frag COPYONLY)
@@ -26,4 +22,8 @@ set(SOURCES
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 
-target_link_libraries(${PROJECT_NAME} glew_s glfw glm)
+target_link_libraries(${PROJECT_NAME} PRIVATE 
+    glfw 
+    GLEW::GLEW 
+    glm::glm
+)
